@@ -20,6 +20,8 @@ public interface UserMapper {
     @Select("SELECT * FROM user WHERE name = #{name}")
     User findUserByName(@Param("name") String name);
 
+    @Select("SELECT * FROM user WHERE id = #{id}")
+    User findUserById(@Param("id") int id);
     /**
      * 查询所有用户信息
      */
@@ -35,9 +37,8 @@ public interface UserMapper {
     /**
      * 根据 id 更新用户信息
      */
-    @Update("UPDATE  user SET name = #{name},age = #{age},money= #{money} WHERE id = #{id}")
-    void updateUser(@Param("name") String name, @Param("age") Integer age, @Param("money") Double money,
-                    @Param("id") int id);
+    @Update("UPDATE  user SET money= #{user.money} + 1 WHERE id = #{user.id}")
+    void updateUser(@Param("user") User user);
 
     /**
      * 根据 id 删除用户信息
