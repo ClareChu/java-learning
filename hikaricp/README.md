@@ -50,20 +50,6 @@ repeatable
 ```
 
 
-```
-: add method
-: find user by id: User{id=13, name='chenshuang', age=12, money=48.0}
-: sleep time 3m
-: add method
-: after user money find user by id: User{id=13, name='chenshuang', age=12, money=49.0}
--------------
-
-: find user by id: User{id=13, name='chenshuang', age=12, money=49.0}
-: sleep time 3m
-: after user money find user by id: User{id=13, name='chenshuang', age=12, money=50.0}
-```
-
-
 serializable
 
 ```
