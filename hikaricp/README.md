@@ -11,56 +11,92 @@ driverClassName还必须指定。除非您收到明显的错误消息，指出�
 read uncommit
 
 ```
-: add method
-: find user by id: User{id=13, name='chenshuang', age=12, money=45.0}
-: sleep time 3m
-: add method
-: find user by id: User{id=13, name='chenshuang', age=12, money=46.0}
-: after user money find user by id: User{id=13, name='chenshuang', age=12, money=46.0}
-: sleep time 3m
-: after user money find user by id: User{id=13, name='chenshuang', age=12, money=47.0}
+readUnCommit :{}start
+readUnCommit :{}start
+: MyHikariCP - Starting...
+: MyHikariCP - Start completed.
+: add method thread name:ThreadPoolTaskExecutor-2
+: find user by id: User{id=14, name='chenshuang', age=12, money=39.0}, thread name:ThreadPoolTaskExecutor-2
+: return code:1, thread:ThreadPoolTaskExecutor-2 
+
+## 执行了update操作
+: sleep time 3m , thread name:ThreadPoolTaskExecutor-2
+
+: add method thread name:ThreadPoolTaskExecutor-1
+
+## 已经读到 ThreadPoolTaskExecutor-2 修改的金额
+: find user by id: User{id=14, name='chenshuang', age=12, money=40.0}, thread name:ThreadPoolTaskExecutor-1
+: after user money find user by id: User{id=14, name='chenshuang', age=12, money=40.0} , thread name:ThreadPoolTaskExecutor-2
+: return code:1, thread:ThreadPoolTaskExecutor-1 
+: sleep time 3m , thread name:ThreadPoolTaskExecutor-1
+: after user money find user by id: User{id=14, name='chenshuang', age=12, money=41.0} , thread name:ThreadPoolTaskExecutor-1
 ```
 
 
 read commit
 
 ```
-: add method
-: find user by id: User{id=13, name='chenshuang', age=12, money=47.0}
-: sleep time 3m
-: add method
-: find user by id: User{id=13, name='chenshuang', age=12, money=47.0}
-: after user money find user by id: User{id=13, name='chenshuang', age=12, money=48.0}
-: sleep time 3m
-: after user money find user by id: User{id=13, name='chenshuang', age=12, money=48.0}
+readCommit :{}start
+readCommit :{}start
+: MyHikariCP - Starting...
+: MyHikariCP - Start completed.
+: add method thread name:ThreadPoolTaskExecutor-1
+: find user by id: User{id=14, name='chenshuang', age=12, money=37.0}, thread name:ThreadPoolTaskExecutor-1
+: return code:1, thread:ThreadPoolTaskExecutor-1 
+
+## 执行了update操作 ThreadPoolTaskExecutor-2 
+: sleep time 3m , thread name:ThreadPoolTaskExecutor-1
+
+: add method thread name:ThreadPoolTaskExecutor-2
+
+## 已经读到 ThreadPoolTaskExecutor-1 修改的金额 
+: find user by id: User{id=14, name='chenshuang', age=12, money=37.0}, thread name:ThreadPoolTaskExecutor-2
+: after user money find user by id: User{id=14, name='chenshuang', age=12, money=38.0} , thread name:ThreadPoolTaskExecutor-1
+: return code:1, thread:ThreadPoolTaskExecutor-2 
+: sleep time 3m , thread name:ThreadPoolTaskExecutor-2
+: after user money find user by id: User{id=14, name='chenshuang', age=12, money=39.0} , thread name:ThreadPoolTaskExecutor-2
 ```
 
 
 repeatable
 
 ```
-: add method
-: find user by id: User{id=13, name='chenshuang', age=12, money=50.0}
-: sleep time 3m
-: add method
-: find user by id: User{id=13, name='chenshuang', age=12, money=50.0}
-: after user money find user by id: User{id=13, name='chenshuang', age=12, money=51.0}
-: sleep time 3m
-: after user money find user by id: User{id=13, name='chenshuang', age=12, money=52.0}
+repeatable :{}start
+repeatable :{}start
+: MyHikariCP - Starting...
+: MyHikariCP - Start completed.
+: add method thread name:ThreadPoolTaskExecutor-2
+: find user by id: User{id=14, name='chenshuang', age=12, money=33.0}, thread name:ThreadPoolTaskExecutor-2
+
+## 执行了update操作  ThreadPoolTaskExecutor-2 
+: return code:1, thread:ThreadPoolTaskExecutor-2 
+: sleep time 3m , thread name:ThreadPoolTaskExecutor-2
+: add method thread name:ThreadPoolTaskExecutor-1
+: find user by id: User{id=14, name='chenshuang', age=12, money=33.0}, thread name:ThreadPoolTaskExecutor-1
+: after user money find user by id: User{id=14, name='chenshuang', age=12, money=34.0} , thread name:ThreadPoolTaskExecutor-2
+: return code:1, thread:ThreadPoolTaskExecutor-1 
+: sleep time 3m , thread name:ThreadPoolTaskExecutor-1
+: after user money find user by id: User{id=14, name='chenshuang', age=12, money=35.0} , thread name:ThreadPoolTaskExecutor-1
 ```
 
 
 serializable
 
 ```
-: add method
-: find user by id: User{id=13, name='chenshuang', age=12, money=48.0}
-: sleep time 3m
-: add method
-: after user money find user by id: User{id=13, name='chenshuang', age=12, money=49.0}
--------------
+serializable :{}start
+serializable :{}start
+: MyHikariCP - Starting...
+: MyHikariCP - Start completed.
+: add method thread name:ThreadPoolTaskExecutor-2
+: find user by id: User{id=14, name='chenshuang', age=12, money=35.0}, thread name:ThreadPoolTaskExecutor-2
+: return code:1, thread:ThreadPoolTaskExecutor-2 
+: sleep time 3m , thread name:ThreadPoolTaskExecutor-2
 
-: find user by id: User{id=13, name='chenshuang', age=12, money=49.0}
-: sleep time 3m
-: after user money find user by id: User{id=13, name='chenshuang', age=12, money=50.0}
+
+: add method thread name:ThreadPoolTaskExecutor-1
+: after user money find user by id: User{id=14, name='chenshuang', age=12, money=36.0} , thread name:ThreadPoolTaskExecutor-2
+: find user by id: User{id=14, name='chenshuang', age=12, money=36.0}, thread name:ThreadPoolTaskExecutor-1
+: return code:1, thread:ThreadPoolTaskExecutor-1 
+: sleep time 3m , thread name:ThreadPoolTaskExecutor-1
+: after user money find user by id: User{id=14, name='chenshuang', age=12, money=37.0} , thread name:ThreadPoolTaskExecutor-1
 ```

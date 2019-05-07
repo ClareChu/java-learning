@@ -36,4 +36,14 @@ public class UserTread2Impl implements UserThread2 {
             o.notifyAll();
         }
     }
+
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    public void read1(int id) throws InterruptedException {
+        //休眠3秒
+        Thread.sleep(2000);
+        int returncode = userMapper.updateByMoney(id);
+        log.info("return code:{}, thread:{} ", returncode, Thread.currentThread().getName());
+
+
+    }
 }

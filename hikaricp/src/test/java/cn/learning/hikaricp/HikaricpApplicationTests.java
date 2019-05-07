@@ -27,7 +27,7 @@ public class HikaricpApplicationTests {
     public void readUnCommit() throws InterruptedException {
         asyncService.readUnCommit(id);
         asyncService.readUnCommit(id);
-        Thread.sleep(10000);
+        Thread.sleep(100000);
     }
 
 
@@ -35,7 +35,7 @@ public class HikaricpApplicationTests {
     public void repeatable() throws InterruptedException {
         asyncService.repeatable(id);
         asyncService.repeatable(id);
-        Thread.sleep(10000);
+        Thread.sleep(100000);
     }
 
     @Test

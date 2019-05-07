@@ -37,8 +37,14 @@ public interface UserMapper {
     /**
      * 根据 id 更新用户信息
      */
-    @Update("UPDATE  user SET money= #{user.money} + 1 WHERE id = #{user.id}")
+    @Update("UPDATE  user SET money = money + 1 WHERE id = #{user.id}")
     int updateUser(@Param("user") User user);
+
+    /**
+     * 根据 id 更新用户信息
+     */
+    @Update("UPDATE  user SET money= money + 1 WHERE id = #{id}")
+    int updateByMoney(@Param("id") int id);
 
     /**
      * 根据 id 删除用户信息

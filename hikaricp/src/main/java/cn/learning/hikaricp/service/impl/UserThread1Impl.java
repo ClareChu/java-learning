@@ -23,7 +23,6 @@ public class UserThread1Impl implements UserThread1 {
     @Resource
     private UserMapper userMapper;
 
-
     @Override
     @Transactional(isolation = Isolation.READ_UNCOMMITTED,rollbackFor = RuntimeException.class)
     public void read(int id, Object o) throws InterruptedException, RuntimeException {
@@ -37,5 +36,16 @@ public class UserThread1Impl implements UserThread1 {
             o.wait();
             throw new RuntimeException("回滚");
         }
+    }
+
+    @Transactional(isolation = Isolation.READ_COMMITTED)
+    public void read1(int id) throws InterruptedException {
+        log.info("add method thread name:{}", Thread.currentThread().getName());
+        User user = userMapper.findUserById(id);
+        log.info("find user by id: {}, thread name:{}", user.toString(), Thread.currentThread().getName());
+        //休眠3秒
+        Thread.sleep(3000);
+        User user1 = userMapper.findUserById(id);
+        log.info("after user money find user by id: {} , thread name:{}", user1.toString(), Thread.currentThread().getName());
     }
 }
