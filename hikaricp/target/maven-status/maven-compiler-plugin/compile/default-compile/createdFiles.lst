@@ -1,0 +1,9 @@
+cn/learning/hikaricp/mapper/UserMapper.class
+cn/learning/hikaricp/thread/UserThread.class
+cn/learning/hikaricp/config/AsyncConfig.class
+cn/learning/hikaricp/thread/AsyncService.class
+cn/learning/hikaricp/service/impl/UserServiceImpl.class
+cn/learning/hikaricp/service/UserService.class
+cn/learning/hikaricp/entity/User.class
+cn/learning/hikaricp/controller/UserController.class
+cn/learning/hikaricp/HikaricpApplication.class
