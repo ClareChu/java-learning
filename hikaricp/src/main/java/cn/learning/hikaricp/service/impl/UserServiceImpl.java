@@ -50,20 +50,30 @@ public class UserServiceImpl implements UserService {
         add();
     }
 
-    public void add() throws InterruptedException {
-        log.info("add method");
-        User user = userMapper.findUserById(13);
-        log.info("find user by id: {}", user.toString());
-        userMapper.updateUser(user);
-        //休眠3秒
-        Thread.sleep(3000);
-        User user1 = userMapper.findUserById(13);
-        log.info("after user money find user by id: {}", user1.toString());
-    }
-
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void readCommit() throws InterruptedException {
         add();
     }
 
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    public void repeatable() throws InterruptedException {
+        add();
+    }
+
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public void serializable() throws InterruptedException {
+        add();
+    }
+
+    public void add() throws InterruptedException {
+        log.info("add method");
+        User user = userMapper.findUserById(13);
+        log.info("find user by id: {}", user.toString());
+        userMapper.updateUser(user);
+        log.info("sleep time 3m");
+        //休眠3秒
+        Thread.sleep(3000);
+        User user1 = userMapper.findUserById(13);
+        log.info("after user money find user by id: {}", user1.toString());
+    }
 }

@@ -44,8 +44,8 @@ public class UserController {
     @GetMapping(value = "userThread1")
     public String userThread1() throws InterruptedException {
         // userService.add();
-        asyncService.executeAsync1();
-        asyncService.executeAsync2();
+        asyncService.readCommit();
+        asyncService.readCommit();
         return "success";
     }
 }

@@ -23,4 +23,8 @@ public interface UserService {
 
      void readCommit() throws InterruptedException;
 
+     void repeatable() throws InterruptedException;
+
+     void serializable() throws InterruptedException;
+
 }

@@ -19,17 +19,28 @@ public class AsyncService {
     private UserService userService;
 
     @Async
-    public void executeAsync1() throws InterruptedException {
-        System.out.println("异步任务::1");
+    public void readCommit() throws InterruptedException {
+        System.out.println("readCommit :{}" + "start");
         userService.readCommit();
 
     }
 
     @Async
-    public void executeAsync2() throws InterruptedException {
-        System.out.println("异步任务::2");
-        System.out.println("异步任务::1");
-        userService.readCommit();
+    public void repeatable() throws InterruptedException {
+        System.out.println("repeatable :{}" + "start");
+        userService.repeatable();
+    }
+
+    @Async
+    public void readUnCommit() throws InterruptedException {
+        System.out.println("readUnCommit :{}" + "start");
+        userService.readUnCommit();
+    }
+
+    @Async
+    public void serializable() throws InterruptedException {
+        System.out.println("serializable :{}" + "start");
+        userService.serializable();
     }
 
 }

@@ -15,10 +15,31 @@ public class HikaricpApplicationTests {
     private AsyncService asyncService;
 
     @Test
-    public void contextLoads() throws InterruptedException {
-        asyncService.executeAsync1();
-        asyncService.executeAsync2();
+    public void readCommit() throws InterruptedException {
+        asyncService.readCommit();
+        asyncService.readCommit();
         Thread.sleep(100000 );
     }
 
+    @Test
+    public void readUnCommit() throws InterruptedException {
+        asyncService.readUnCommit();
+        asyncService.readUnCommit();
+        Thread.sleep(100000);
+    }
+
+
+    @Test
+    public void repeatable() throws InterruptedException {
+        asyncService.repeatable();
+        asyncService.repeatable();
+        Thread.sleep(100000);
+    }
+
+    @Test
+    public void serializable() throws InterruptedException {
+        asyncService.serializable();
+        asyncService.serializable();
+        Thread.sleep(100000);
+    }
 }
