@@ -20,7 +20,7 @@ public class UserThread implements Runnable {
     @Override
     public void run() {
         try {
-            userService.readUnCommit();
+            userService.readUnCommit(13);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

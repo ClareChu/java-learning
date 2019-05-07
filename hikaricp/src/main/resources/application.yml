@@ -11,7 +11,7 @@ thread:
 spring:
   # 数据库配置
   datasource:
-    url: jdbc:mysql://www.chenshuang.xyz:3306/demo?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    url: jdbc:mysql://www.chenshuang.xyz:3306/demo?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&userAffectRows=true
     username: admin
     password: 123456
     #driverClassName: com.mysql.cj.jdbc.Driver

@@ -19,12 +19,12 @@ public interface UserService {
 
      List<User> getAll();
 
-     void readUnCommit() throws InterruptedException;
+     void readUnCommit(int id) throws InterruptedException;
 
-     void readCommit() throws InterruptedException;
+     void readCommit(int id) throws InterruptedException;
 
-     void repeatable() throws InterruptedException;
+     void repeatable(int id) throws InterruptedException;
 
-     void serializable() throws InterruptedException;
+     void serializable(int id) throws InterruptedException;
 
 }

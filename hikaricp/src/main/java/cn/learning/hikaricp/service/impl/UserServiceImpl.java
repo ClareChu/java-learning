@@ -46,34 +46,35 @@ public class UserServiceImpl implements UserService {
     }
 
     @Transactional(isolation = Isolation.READ_UNCOMMITTED)
-    public void readUnCommit() throws InterruptedException {
-        add();
+    public void readUnCommit(int id) throws InterruptedException {
+        add(id);
     }
 
     @Transactional(isolation = Isolation.READ_COMMITTED)
-    public void readCommit() throws InterruptedException {
-        add();
+    public void readCommit(int id) throws InterruptedException {
+        add(id);
     }
 
     @Transactional(isolation = Isolation.REPEATABLE_READ)
-    public void repeatable() throws InterruptedException {
-        add();
+    public void repeatable(int id) throws InterruptedException {
+        add(id);
     }
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    public void serializable() throws InterruptedException {
-        add();
+    public void serializable(int id) throws InterruptedException {
+        add(id);
     }
 
-    public void add() throws InterruptedException {
+    public void add(int id) throws InterruptedException {
         log.info("add method thread name:{}", Thread.currentThread().getName());
-        User user = userMapper.findUserById(13);
+        User user = userMapper.findUserById(id);
         log.info("find user by id: {}, thread name:{}", user.toString(), Thread.currentThread().getName());
-        userMapper.updateUser(user);
+        int returncode = userMapper.updateUser(user);
+        log.info("return code:{}, thread:{} ", returncode, Thread.currentThread().getName());
         log.info("sleep time 3m , thread name:{}", Thread.currentThread().getName());
         //休眠3秒
         Thread.sleep(3000);
-        User user1 = userMapper.findUserById(13);
+        User user1 = userMapper.findUserById(id);
         log.info("after user money find user by id: {} , thread name:{}", user1.toString(), Thread.currentThread().getName());
     }
 }

@@ -14,32 +14,34 @@ public class HikaricpApplicationTests {
     @Autowired
     private AsyncService asyncService;
 
+    private static final int id= 13;
+
     @Test
     public void readCommit() throws InterruptedException {
-        asyncService.readCommit();
-        asyncService.readCommit();
+        asyncService.readCommit(id);
+        asyncService.readCommit(id);
         Thread.sleep(100000 );
     }
 
     @Test
     public void readUnCommit() throws InterruptedException {
-        asyncService.readUnCommit();
-        asyncService.readUnCommit();
-        Thread.sleep(100000);
+        asyncService.readUnCommit(id);
+        asyncService.readUnCommit(id);
+        Thread.sleep(10000);
     }
 
 
     @Test
     public void repeatable() throws InterruptedException {
-        asyncService.repeatable();
-        asyncService.repeatable();
-        Thread.sleep(100000);
+        asyncService.repeatable(id);
+        asyncService.repeatable(id);
+        Thread.sleep(10000);
     }
 
     @Test
     public void serializable() throws InterruptedException {
-        asyncService.serializable();
-        asyncService.serializable();
+        asyncService.serializable(id);
+        asyncService.serializable(id);
         Thread.sleep(100000);
     }
 }
