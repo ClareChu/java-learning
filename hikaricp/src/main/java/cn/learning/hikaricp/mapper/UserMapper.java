@@ -20,7 +20,7 @@ public interface UserMapper {
     @Select("SELECT * FROM user WHERE name = #{name}")
     User findUserByName(@Param("name") String name);
 
-    @Select("SELECT * FROM user WHERE id = #{id}")
+    @Select("SELECT * FROM user WHERE id = #{id} for update")
     User findUserById(@Param("id") int id);
     /**
      * 查询所有用户信息

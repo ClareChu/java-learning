@@ -1,5 +1,6 @@
 package cn.learning.hikaricp.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -18,15 +19,24 @@ import java.util.concurrent.Executor;
 @EnableAsync
 public class AsyncConfig implements AsyncConfigurer {
 
+    @Value("${thread.CorePoolSize}")
+    private int CorePoolSize;
+
+    @Value("${thread.MaxPoolSize}")
+    private int MaxPoolSize;
+
+    @Value("${thread.QueueCapacity}")
+    private int QueueCapacity;
+
     @Override
     public Executor getAsyncExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         //核心线程数
-        taskExecutor.setCorePoolSize(8);
+        taskExecutor.setCorePoolSize(CorePoolSize);
         //最大线程数
-        taskExecutor.setMaxPoolSize(16);
+        taskExecutor.setMaxPoolSize(MaxPoolSize);
         //队列大小
-        taskExecutor.setQueueCapacity(100);
+        taskExecutor.setQueueCapacity(QueueCapacity);
         taskExecutor.initialize();
         return taskExecutor;
     }

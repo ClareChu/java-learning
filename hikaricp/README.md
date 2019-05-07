@@ -46,7 +46,7 @@ repeatable
 : find user by id: User{id=13, name='chenshuang', age=12, money=50.0}
 : after user money find user by id: User{id=13, name='chenshuang', age=12, money=51.0}
 : sleep time 3m
-: after user money find user by id: User{id=13, name='chenshuang', age=12, money=50.0}
+: after user money find user by id: User{id=13, name='chenshuang', age=12, money=52.0}
 ```
 
 

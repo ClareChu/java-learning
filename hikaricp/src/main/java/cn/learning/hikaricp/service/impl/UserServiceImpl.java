@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.findUserByName(userName);
     }
 
-    public boolean addUser(User record){
+    public boolean addUser(User record) {
         boolean result = false;
         try {
             userMapper.insertUser(record);
@@ -66,14 +66,14 @@ public class UserServiceImpl implements UserService {
     }
 
     public void add() throws InterruptedException {
-        log.info("add method");
+        log.info("add method thread name:{}", Thread.currentThread().getName());
         User user = userMapper.findUserById(13);
-        log.info("find user by id: {}", user.toString());
+        log.info("find user by id: {}, thread name:{}", user.toString(), Thread.currentThread().getName());
         userMapper.updateUser(user);
-        log.info("sleep time 3m");
+        log.info("sleep time 3m , thread name:{}", Thread.currentThread().getName());
         //休眠3秒
         Thread.sleep(3000);
         User user1 = userMapper.findUserById(13);
-        log.info("after user money find user by id: {}", user1.toString());
+        log.info("after user money find user by id: {} , thread name:{}", user1.toString(), Thread.currentThread().getName());
     }
 }

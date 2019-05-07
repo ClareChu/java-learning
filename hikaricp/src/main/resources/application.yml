@@ -3,6 +3,11 @@ mybatis:
   mapperLocations: classpath:mapper/*.xml
 
 
+thread:
+  CorePoolSize: 8
+  MaxPoolSize: 16
+  QueueCapacity: 100
+
 spring:
   # 数据库配置
   datasource:
