@@ -8,4 +8,6 @@ package cn.learning.hikaricp.service;
  * @Version 1.0
  */
 public interface UserThread2 {
+
+    void read(int id, Object o) throws InterruptedException;
 }

@@ -9,7 +9,7 @@ package cn.learning.hikaricp.service;
  */
 public interface UserThread1 {
 
-
+    void read(int id, Object o) throws InterruptedException, RuntimeException;
 
 
 }

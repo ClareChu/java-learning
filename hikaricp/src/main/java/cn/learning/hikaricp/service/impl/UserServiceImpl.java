@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
         add(id);
     }
 
-    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    @Transactional(isolation = Isolation.DEFAULT)
     public void repeatable(int id) throws InterruptedException {
         add(id);
     }

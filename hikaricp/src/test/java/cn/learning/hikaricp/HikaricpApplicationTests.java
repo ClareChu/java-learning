@@ -14,7 +14,7 @@ public class HikaricpApplicationTests {
     @Autowired
     private AsyncService asyncService;
 
-    private static final int id= 13;
+    private static final int id= 14;
 
     @Test
     public void readCommit() throws InterruptedException {
@@ -42,6 +42,14 @@ public class HikaricpApplicationTests {
     public void serializable() throws InterruptedException {
         asyncService.serializable(id);
         asyncService.serializable(id);
+        Thread.sleep(100000);
+    }
+
+    @Test
+    public void read() throws InterruptedException {
+        Object o = new Object();
+        asyncService.read1(id, o);
+        asyncService.read2(id, o);
         Thread.sleep(100000);
     }
 }

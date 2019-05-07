@@ -1,6 +1,14 @@
 package cn.learning.hikaricp.service.impl;
 
+import cn.learning.hikaricp.entity.User;
+import cn.learning.hikaricp.mapper.UserMapper;
 import cn.learning.hikaricp.service.UserThread1;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
 
 /**
  * @ClassName UserThread1Impl
@@ -9,5 +17,25 @@ import cn.learning.hikaricp.service.UserThread1;
  * @Date 2019/5/7 17:01
  * @Version 1.0
  */
+@Service
+@Slf4j
 public class UserThread1Impl implements UserThread1 {
+    @Resource
+    private UserMapper userMapper;
+
+
+    @Override
+    @Transactional(isolation = Isolation.READ_UNCOMMITTED,rollbackFor = RuntimeException.class)
+    public void read(int id, Object o) throws InterruptedException, RuntimeException {
+        synchronized (o) {
+            log.info("read1 thread name:{}", Thread.currentThread().getName());
+            userMapper.findUserById(id);
+            User user = userMapper.findUserById(id);
+            log.info("find user by id: {}, thread name:{}", user.toString(), Thread.currentThread().getName());
+            int returncode = userMapper.updateUser(user);
+            log.info("wait thread name {}", Thread.currentThread().getName());
+            o.wait();
+            throw new RuntimeException("回滚");
+        }
+    }
 }

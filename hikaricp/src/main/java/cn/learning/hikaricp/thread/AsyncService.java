@@ -1,6 +1,8 @@
 package cn.learning.hikaricp.thread;
 
 import cn.learning.hikaricp.service.UserService;
+import cn.learning.hikaricp.service.UserThread1;
+import cn.learning.hikaricp.service.UserThread2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,12 @@ public class AsyncService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserThread1 userThread1;
+
+    @Autowired
+    private UserThread2 userThread2;
 
     @Async
     public void readCommit(int id) throws InterruptedException {
@@ -43,4 +51,15 @@ public class AsyncService {
         userService.serializable(id);
     }
 
+    @Async
+    public void read1(int id, Object o) throws InterruptedException {
+        System.out.println("read1 :{}" + "start");
+        userThread1.read(id, o);
+    }
+
+    @Async
+    public void read2(int id, Object o) throws InterruptedException {
+        System.out.println("read2 :{}" + "start");
+        userThread2.read(id, o);
+    }
 }
