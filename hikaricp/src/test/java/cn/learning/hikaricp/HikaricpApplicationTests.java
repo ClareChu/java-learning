@@ -1,5 +1,6 @@
 package cn.learning.hikaricp;
 
+import cn.learning.hikaricp.service.UserService;
 import cn.learning.hikaricp.thread.AsyncService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,9 @@ public class HikaricpApplicationTests {
 
     @Autowired
     private AsyncService asyncService;
+
+    @Autowired
+    private UserService userService;
 
     private static final int id= 14;
 
@@ -65,5 +69,15 @@ public class HikaricpApplicationTests {
         asyncService.read5();
         asyncService.read6();
         Thread.sleep(100000);
+    }
+
+    @Test
+    public void required() throws InterruptedException {
+        userService.required(13);
+    }
+
+    @Test
+    public void get1() throws InterruptedException {
+        userService.get1(13);
     }
 }

@@ -6,6 +6,7 @@ import cn.learning.hikaricp.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -77,4 +78,26 @@ public class UserServiceImpl implements UserService {
         User user1 = userMapper.findUserById(id);
         log.info("after user money find user by id: {} , thread name:{}", user1.toString(), Thread.currentThread().getName());
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void required(int id){
+        int returncode = userMapper.updateByMoney1(id, 1);
+        log.info("return code:{}, thread:{} ", returncode, Thread.currentThread().getName());
+        this.get1(id);
+    }
+
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void get1(int id){
+        int returncode = userMapper.updateByMoney1(id, 2);
+        log.info("return code:{}, thread:{} ", returncode, Thread.currentThread().getName());
+        throw new RuntimeException("ww");
+    }
+
+
+
+
+
+
+
 }

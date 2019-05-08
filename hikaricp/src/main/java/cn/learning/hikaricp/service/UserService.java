@@ -1,6 +1,7 @@
 package cn.learning.hikaricp.service;
 
 import cn.learning.hikaricp.entity.User;
+
 import java.util.List;
 
 /**
@@ -13,18 +14,22 @@ import java.util.List;
 
 public interface UserService {
 
-     User getUserById(String userName);
+    User getUserById(String userName);
 
-     boolean addUser(User record);
+    boolean addUser(User record);
 
-     List<User> getAll();
+    List<User> getAll();
 
-     void readUnCommit(int id) throws InterruptedException;
+    void readUnCommit(int id) throws InterruptedException;
 
-     void readCommit(int id) throws InterruptedException;
+    void readCommit(int id) throws InterruptedException;
 
-     void repeatable(int id) throws InterruptedException;
+    void repeatable(int id) throws InterruptedException;
 
-     void serializable(int id) throws InterruptedException;
+    void serializable(int id) throws InterruptedException;
+
+    void required(int id);
+
+    void get1(int id);
 
 }
