@@ -62,4 +62,17 @@ public class AsyncService {
         System.out.println("read2 :{}" + "start");
         userThread2.read(id, o);
     }
+
+
+    @Async
+    public void read3(int id) throws InterruptedException {
+        System.out.println("read1 :{}" + "start");
+        userThread1.read1(id);
+    }
+
+    @Async
+    public void read4(int id) throws InterruptedException {
+        System.out.println("read2 :{}" + "start");
+        userThread2.read1(id);
+    }
 }

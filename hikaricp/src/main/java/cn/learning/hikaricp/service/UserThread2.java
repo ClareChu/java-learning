@@ -10,4 +10,6 @@ package cn.learning.hikaricp.service;
 public interface UserThread2 {
 
     void read(int id, Object o) throws InterruptedException;
+
+    void read1(int id) throws InterruptedException;
 }

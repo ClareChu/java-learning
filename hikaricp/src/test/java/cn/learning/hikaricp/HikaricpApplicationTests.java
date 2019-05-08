@@ -52,4 +52,11 @@ public class HikaricpApplicationTests {
         asyncService.read2(id, o);
         Thread.sleep(100000);
     }
+
+    @Test
+    public void read1() throws InterruptedException {
+        asyncService.read3(id);
+        asyncService.read4(id);
+        Thread.sleep(100000);
+    }
 }
