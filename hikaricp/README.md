@@ -8,7 +8,10 @@ HikariCP将尝试仅通过驱动程序管理器来解析驱动程序jdbcUrl，�
 driverClassName还必须指定。除非您收到明显的错误消息，指出未找到驱动程序，否则请忽略此属性。 默认值：无
 ```
 
-read uncommit
+read unCommit
+
+由下面的日志我们可以看到事务 `ThreadPoolTaskExecutor-2` 返回 return code:1时 
+数据库已经对数据进行了修改操作 但还没有`commmit`事务此时 事务1去查询该数据 查询到已经修改的脏数据
 
 ```
 readUnCommit :{}start
@@ -34,6 +37,8 @@ readUnCommit :{}start
 
 
 read commit
+
+此时的readcommit 和 repeatable 表示的是一样的没有任何区别， 下面在来解释俩者的区别
 
 ```
 readCommit :{}start
@@ -82,6 +87,9 @@ repeatable :{}start
 
 serializable
 
+不可串行化 ： 这里俩个事务同时查询某张表的时候是不可以同时进行的 相当于表锁，不能并行 
+
+
 ```
 serializable :{}start
 serializable :{}start
@@ -95,6 +103,7 @@ serializable :{}start
 
 : add method thread name:ThreadPoolTaskExecutor-1
 : after user money find user by id: User{id=14, name='chenshuang', age=12, money=36.0} , thread name:ThreadPoolTaskExecutor-2
+
 : find user by id: User{id=14, name='chenshuang', age=12, money=36.0}, thread name:ThreadPoolTaskExecutor-1
 : return code:1, thread:ThreadPoolTaskExecutor-1 
 : sleep time 3m , thread name:ThreadPoolTaskExecutor-1
