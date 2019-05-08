@@ -44,12 +44,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- HikariCP 连接池依赖，从父依赖获取额版本 -->
-        <dependency>
-            <groupId>com.zaxxer</groupId>
-            <artifactId>HikariCP</artifactId>
-            <!-- <scope>runtime</scope> -->
-        </dependency>
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>

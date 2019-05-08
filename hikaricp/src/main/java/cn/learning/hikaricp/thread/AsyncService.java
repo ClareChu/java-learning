@@ -1,5 +1,6 @@
 package cn.learning.hikaricp.thread;
 
+import cn.learning.hikaricp.entity.User;
 import cn.learning.hikaricp.service.UserService;
 import cn.learning.hikaricp.service.UserThread1;
 import cn.learning.hikaricp.service.UserThread2;
@@ -74,5 +75,18 @@ public class AsyncService {
     public void read4(int id) throws InterruptedException {
         System.out.println("read2 :{}" + "start");
         userThread2.read1(id);
+    }
+
+    @Async
+    public void read5() throws InterruptedException {
+        System.out.println("read2 :{}" + "start");
+        User user = new User(1111, "chenshuang", 12, 12);
+        userThread2.addUser(user);
+    }
+
+    @Async
+    public void read6() throws InterruptedException {
+        System.out.println("read2 :{}" + "start");
+        userThread1.read2();
     }
 }

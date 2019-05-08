@@ -22,11 +22,18 @@ public interface UserMapper {
 
     @Select("SELECT * FROM user WHERE id = #{id}")
     User findUserById(@Param("id") int id);
+
     /**
      * 查询所有用户信息
      */
     @Select("SELECT * FROM user")
     List<User> findAllUser();
+
+    /**
+     * 查询所有用户信息
+     */
+    @Select("SELECT * FROM user where 1=1")
+    List<User> findAllUser1();
 
     /**
      * 插入用户信息

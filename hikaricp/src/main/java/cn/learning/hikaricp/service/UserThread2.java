@@ -1,5 +1,7 @@
 package cn.learning.hikaricp.service;
 
+import cn.learning.hikaricp.entity.User;
+
 /**
  * @ClassName UserThread2
  * @Description TODO
@@ -12,4 +14,6 @@ public interface UserThread2 {
     void read(int id, Object o) throws InterruptedException;
 
     void read1(int id) throws InterruptedException;
+
+    boolean addUser(User record) throws InterruptedException;
 }

@@ -49,8 +49,19 @@ public class UserThread1Impl implements UserThread1 {
         List<User> user = userMapper.findAllUser();
         log.info("find user by id: {}, thread name:{}", user.get(1).toString(), Thread.currentThread().getName());
         //休眠3秒
-        Thread.sleep(9000);
+        Thread.sleep(3000);
         User user1 = userMapper.findUserById(id);
         log.info("after user money find user by id: {} , thread name:{}", user1.toString(), Thread.currentThread().getName());
+    }
+
+    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    public void read2() throws InterruptedException {
+        log.info("read2 method thread name:{}", Thread.currentThread().getName());
+        List<User> user = userMapper.findAllUser1();
+        log.info("find user size: {}, thread name:{}", user.size(), Thread.currentThread().getName());
+        //休眠3秒
+        Thread.sleep(4000);
+        List<User> user1 = userMapper.findAllUser();
+        log.info("after user money find user size: {} , thread name:{}", user1.size(), Thread.currentThread().getName());
     }
 }

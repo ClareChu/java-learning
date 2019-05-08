@@ -12,4 +12,6 @@ public interface UserThread1 {
     void read(int id, Object o) throws InterruptedException, RuntimeException;
 
     void read1(int id) throws InterruptedException;
+
+    void read2() throws InterruptedException;
 }

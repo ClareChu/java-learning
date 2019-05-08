@@ -116,7 +116,7 @@ serializable :{}start
 当一个事务连续查询一条数据， 另一个事务执行update操作并commit
 
 
-repeatable
+repeatable   
 
 ```
 : add method thread name:ThreadPoolTaskExecutor-1
@@ -127,11 +127,11 @@ repeatable
 ```
 
 
-read commit
+read commit 第一次读到的数据和第二次读到的数据不一致 感觉出现了幻觉一样的
 
 ```
 : find user by id: User{id=14, name='chenshuang', age=12, money=77.0}, thread name:ThreadPoolTaskExecutor-1
 : return code:1, thread:ThreadPoolTaskExecutor-2 
 : after user money find user by id: User{id=14, name='chenshuang', age=12, money=78.0} , thread name:ThreadPoolTaskExecutor-2
-: after user money find user by id: User{id=14, name='chenshuang', age=12, money=78.0} , thread name:ThreadPoolTaskExecutor-1
+    : after user money find user by id: User{id=14, name='chenshuang', age=12, money=78.0} , thread name:ThreadPoolTaskExecutor-1
 ```

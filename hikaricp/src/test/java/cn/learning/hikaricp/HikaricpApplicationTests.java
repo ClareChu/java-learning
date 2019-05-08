@@ -59,4 +59,11 @@ public class HikaricpApplicationTests {
         asyncService.read4(id);
         Thread.sleep(100000);
     }
+
+    @Test
+    public void read2() throws InterruptedException {
+        asyncService.read5();
+        asyncService.read6();
+        Thread.sleep(100000);
+    }
 }

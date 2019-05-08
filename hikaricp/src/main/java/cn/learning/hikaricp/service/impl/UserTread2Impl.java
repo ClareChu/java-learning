@@ -55,4 +55,13 @@ public class UserTread2Impl implements UserThread2 {
         User user1 = userMapper.findUserById(id);
         log.info("after user money find user by id: {} , thread name:{}", user1.toString(), Thread.currentThread().getName());
     }
+
+    @Transactional
+    public boolean addUser(User record) throws InterruptedException {
+        Thread.sleep(3000);
+        log.info("add user");
+        userMapper.insertUser(record);
+        log.info("insert");
+        return true;
+    }
 }
