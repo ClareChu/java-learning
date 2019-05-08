@@ -23,6 +23,7 @@
         <module>learning-api</module>
         <module>consumer</module>
         <module>provider</module>
+        <module>eureka-server</module>
     </modules>
 
     <dependencies>
