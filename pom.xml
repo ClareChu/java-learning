@@ -21,6 +21,8 @@
     <modules>
         <module>hikaricp</module>
         <module>learning-api</module>
+        <module>consumer</module>
+        <module>provider</module>
     </modules>
 
     <dependencies>
