@@ -43,7 +43,7 @@ public class UserThread1Impl implements UserThread1 {
         }
     }
 
-    @Transactional(isolation = Isolation.REPEATABLE_READ)
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void read1(int id) throws InterruptedException {
         log.info("add method thread name:{}", Thread.currentThread().getName());
         List<User> user = userMapper.findAllUser();

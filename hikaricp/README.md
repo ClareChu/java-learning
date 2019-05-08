@@ -109,3 +109,29 @@ serializable :{}start
 : sleep time 3m , thread name:ThreadPoolTaskExecutor-1
 : after user money find user by id: User{id=14, name='chenshuang', age=12, money=37.0} , thread name:ThreadPoolTaskExecutor-1
 ```
+
+
+现在我们来比较一下 read commit 和repeatable的区别
+
+当一个事务连续查询一条数据， 另一个事务执行update操作并commit
+
+
+repeatable
+
+```
+: add method thread name:ThreadPoolTaskExecutor-1
+: find user by id: User{id=14, name='chenshuang', age=12, money=74.0}, thread name:ThreadPoolTaskExecutor-1
+: return code:1, thread:ThreadPoolTaskExecutor-2 
+: after user money find user by id: User{id=14, name='chenshuang', age=12, money=75.0} , thread name:ThreadPoolTaskExecutor-2
+: after user money find user by id: User{id=14, name='chenshuang', age=12, money=74.0} , thread name:ThreadPoolTaskExecutor-1
+```
+
+
+read commit
+
+```
+: find user by id: User{id=14, name='chenshuang', age=12, money=77.0}, thread name:ThreadPoolTaskExecutor-1
+: return code:1, thread:ThreadPoolTaskExecutor-2 
+: after user money find user by id: User{id=14, name='chenshuang', age=12, money=78.0} , thread name:ThreadPoolTaskExecutor-2
+: after user money find user by id: User{id=14, name='chenshuang', age=12, money=78.0} , thread name:ThreadPoolTaskExecutor-1
+```
