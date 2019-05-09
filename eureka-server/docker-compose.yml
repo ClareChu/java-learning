@@ -1,7 +1,8 @@
 version: '3'
 services:
   eureka-server:
-    network_mode: "host"
+    ports:
+      - 8761:8761
     environment:
       SPRING_PROFILES_ACTIVE: "peer1"
     image: "clarechu/eureka-server"
