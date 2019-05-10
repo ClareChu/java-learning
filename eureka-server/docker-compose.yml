@@ -1,9 +1,16 @@
 version: '3'
 services:
-  eureka-server:
+  peer1:
     ports:
-      - 8761:8761
+    - 8761:8761
     environment:
       SPRING_PROFILES_ACTIVE: "peer1"
+    image: "clarechu/eureka-server"
+    restart: always
+  peer2:
+    ports:
+    - 8762:8762
+    environment:
+      SPRING_PROFILES_ACTIVE: "peer2"
     image: "clarechu/eureka-server"
     restart: always

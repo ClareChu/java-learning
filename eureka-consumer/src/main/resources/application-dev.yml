@@ -1,0 +1,6 @@
+eureka:
+  client:
+    serviceUrl: #注册中心的注册地址
+      defaultZone: http://eureka.chenshuang.xyz:8761/eureka/
+  instance:
+    prefer-ip-address: true

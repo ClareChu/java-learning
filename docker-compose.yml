@@ -1,0 +1,29 @@
+version: '3'
+services:
+  eureka-consumer:
+    hostname: eureka-consumer
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
+    image: "clarechu/eureka-consumer"
+    restart: always
+    links:
+      - eureka-provider
+      - eureka-provider-v1
+  eureka-provider:
+    hostname: eureka-provider
+    ports:
+      - 8082:8082
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
+    image: "clarechu/eureka-provider"
+    restart: always
+  eureka-provider-v1:
+    hostname: eureka-provider
+    ports:
+    - 8081:8081
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
+    image: "clarechu/eureka-provider:v1"
+    restart: always

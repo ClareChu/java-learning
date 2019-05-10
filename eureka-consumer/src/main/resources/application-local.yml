@@ -1,0 +1,9 @@
+server:
+  port: 8083  #服务端口号
+
+eureka:
+  client:
+    serviceUrl: #注册中心的注册地址
+      defaultZone: http://admin:admin@peer3:9003/eureka/
+  instance:
+    prefer-ip-address: true

@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
         add(id);
     }
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
+    @Transactional(isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRES_NEW)
     public void serializable(int id) throws InterruptedException {
         add(id);
     }

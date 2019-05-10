@@ -1,5 +1,45 @@
 spring:
   application:
     name: eureka
-  profiles:
-    active: peer1
+  security:
+    user:
+      name: admin
+      password: admin
+
+---
+spring:
+  profiles: peer1
+server:
+  port: 9001
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    registerWithEureka: false #是否向服务注册中心注册自己
+    fetchRegistry: false #是否检索服务
+    service-url:
+      defaultZone: http://admin:admin@peer2:9002/eureka/
+---
+spring:
+  profiles: peer2
+server:
+  port: 9002
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    service-url:
+      defaultZone: http://admin:admin@peer1:9001/eureka/
+---
+spring:
+  profiles: peer3
+server:
+  port: 9003
+eureka:
+  instance:
+    hostname: peer3
+  client:
+    registerWithEureka: false #是否向服务注册中心注册自己
+    fetchRegistry: false #是否检索服务
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

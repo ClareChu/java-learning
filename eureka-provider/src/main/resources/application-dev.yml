@@ -1,0 +1,10 @@
+eureka:
+  client:
+    serviceUrl: #注册中心的注册地址
+      defaultZone: http://eureka.chenshuang.xyz:8761/eureka/
+    eureka-server-port:
+  instance:
+    prefer-ip-address: true
+
+server:
+  port: 8082  #服务端口号
