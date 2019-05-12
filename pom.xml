@@ -25,6 +25,7 @@
         <module>eureka-server</module>
         <module>eureka-provider</module>
         <module>eureka-consumer</module>
+        <module>eureka-feign</module>
     </modules>
 
     <dependencies>
