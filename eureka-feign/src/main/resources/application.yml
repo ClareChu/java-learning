@@ -1,4 +1,14 @@
-
 feign-client:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+eureka:
+  client:
+    serviceUrl: #注册中心的注册地址
+      defaultZone: http://admin:admin@peer3:9003/eureka/
+#    enabled: false
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    name: eureka-feign

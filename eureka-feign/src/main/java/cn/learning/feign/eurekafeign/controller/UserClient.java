@@ -1,8 +1,8 @@
 package cn.learning.feign.eurekafeign.controller;
 
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @ClassName UserClient
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(value="eureka-provider")
 public interface UserClient {
 
-    @RequestMapping(value = "/getUser",method = RequestMethod.GET)
-    Object getUser(int id);
+    @GetMapping(value = "/getUser/{id}")
+    Object getUser(@PathVariable int id);
 
 }

@@ -1,6 +1,7 @@
 package cn.learning.provider.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -18,8 +19,8 @@ import java.util.Map;
 public class UserController {
 
 
-    @GetMapping(value = "/getUser")
-    public Object getUser(int id) {
+    @GetMapping(value = "/getUser/{id}")
+    public Object getUser(@PathVariable int id) {
         Map<String,Object> data = new HashMap<>();
         data.put("id",id);
         data.put("userName","admin");
