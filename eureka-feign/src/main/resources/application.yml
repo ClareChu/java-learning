@@ -1,0 +1,4 @@
+
+feign-client:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
